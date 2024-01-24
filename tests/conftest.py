@@ -1,5 +1,6 @@
 import pytest
 from pymongo import MongoClient
+import app
 from app import scrap, quoting
 
 
@@ -31,7 +32,8 @@ def test_scrap():
 
 # test quote function
 def test_quote():
-    try:
-        quoting()
-    except Exception:
-        pytest.fail("Quoting failed")
+    with app.app_context():
+        try:
+            quoting()
+        except Exception:
+            pytest.fail("Quoting failed")

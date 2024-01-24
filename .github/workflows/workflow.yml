@@ -34,6 +34,10 @@ jobs:
     - name: Change to the repository root
       run: cd $GITHUB_WORKSPACE
 
+    - name: run flask api
+      run: |
+        python ./app.py
+        
     - name: Run tests
       run: |
         python -m pytest ./tests/conftest.py

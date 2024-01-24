@@ -18,18 +18,18 @@ jobs:
       with:
         python-version: 3.9  # Remplacez "3.x" par la version de Python que vous utilisez
 
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt  # Si vous avez un fichier requirements.txt
 
     - name: Install mongodb
-      run: |
-        sudo apt-get install mongodb
+      uses: supercharge/mongodb-github-action@1.6.0
 
-    - name: run mongodb
-      run: |
-        sudo service mongodb start
+    # - name: run mongodb
+    #   run: |
+    #     sudo service mongodb start
 
     - name: Change to the repository root
       run: cd $GITHUB_WORKSPACE

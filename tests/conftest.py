@@ -10,8 +10,7 @@ def mongo_connection():
     yield client
 
 
-@pytest.fixture
-def mongo_db(mongo_connection):
+def test_mongo_db(mongo_connection):
     try:
         db = mongo_connection.quote_db
         yield db
@@ -20,7 +19,6 @@ def mongo_db(mongo_connection):
 
 
 # Test scrap function
-@pytest.fixture
 def test_scrap():
     try:
         scrap()
@@ -29,7 +27,6 @@ def test_scrap():
 
 
 # test quote function
-@pytest.fixture
 def test_quote():
     try:
         quoting()

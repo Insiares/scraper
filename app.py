@@ -29,8 +29,8 @@ def quoting():
         quote = [doc for doc in db.quotes.aggregate([{
             "$sample": {"size": 1}}])][0]
         client.close()
-        return render_template("quote.html", 
-                               quote=quote["content"], 
+        return render_template("quote.html",
+                               quote=quote["content"],
                                author=quote["author"])
     except RuntimeError:
         return "Riperino"

@@ -13,7 +13,8 @@ SPIDER_MODULES = ["brief10.spiders"]
 NEWSPIDER_MODULE = "brief10.spiders"
 
 
-# Crawl responsibly by identifying yourself (and your website) on the user-agent
+# Crawl responsibly by identifying yourself
+# (and your website) on the user-agent
 # USER_AGENT = "brief10 (+http://www.yourdomain.com)"
 
 # Obey robots.txt rules
@@ -38,8 +39,8 @@ ROBOTSTXT_OBEY = True
 
 # Override the default request headers:
 # DEFAULT_REQUEST_HEADERS = {
-#    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-#    "Accept-Language": "en",
+# "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+# "Accept-Language": "en",
 # }
 
 # Enable or disable spider middlewares
@@ -82,7 +83,7 @@ MONGO_DATABASE = "quote_db"
 # AUTOTHROTTLE_DEBUG = False
 
 # Enable and configure HTTP caching (disabled by default)
-# See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html#httpcache-middleware-settings
+# See
 # HTTPCACHE_ENABLED = True
 # HTTPCACHE_EXPIRATION_SECS = 0
 # HTTPCACHE_DIR = "httpcache"

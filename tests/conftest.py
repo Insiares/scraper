@@ -1,7 +1,8 @@
 import pytest
 from pymongo import MongoClient
 import requests
-
+from app import scrap, quoting
+import subprocess
 
 # testing the mongodb connection
 @pytest.fixture
@@ -19,16 +20,16 @@ def mongo_db(mongo_connection):
         pytest.fail("Could not connect to MongoDB")
 
 
-# Test api response
-@pytest.fixture
-def api_response():
-    FLASK_API_URL = "http://127.0.0.1:5000/quote"
+# Test scrap function
+def test_scrap():
     try:
-        response = requests.get(FLASK_API_URL)
-        yield response
+        scrap()
     except Exception:
-        pytest.fail("Could not connect to API")
+        pytest.fail("Scraping failed")
 
-
-def test_api_response(api_response):
-    assert api_response.status_code == 200
+# test quote function
+def test_quote():
+    try:
+        quoting()
+    except Exception:
+        pytest.fail("Quoting failed")

@@ -1,8 +1,7 @@
 import pytest
 from pymongo import MongoClient
-import requests
 from app import scrap, quoting
-import subprocess
+
 
 # testing the mongodb connection
 @pytest.fixture
@@ -21,13 +20,16 @@ def mongo_db(mongo_connection):
 
 
 # Test scrap function
+@pytest.fixture
 def test_scrap():
     try:
         scrap()
     except Exception:
         pytest.fail("Scraping failed")
 
+
 # test quote function
+@pytest.fixture
 def test_quote():
     try:
         quoting()

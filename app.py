@@ -32,6 +32,8 @@ def quoting():
         return render_template("quote.html", 
                                quote=quote["content"], 
                                author=quote["author"])
+    except RuntimeError:
+        return "Riperino"
     except Exception:
         return render_template("quote.html", quote=None)
 

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Random Quote</title>
+</head>
+<body>
+    <h1>Random Quote</h1>
+    {% if quote %}
+        <p>{{ quote }}</p>
+        <p>- {{ author }}</p>
+    {% else %}
+        <p>No quote available</p>
+        <a href="{{ url_for('scrap') }}"><button>Get Quote</button></a>
+    {% endif %}
+</body>
+</html>

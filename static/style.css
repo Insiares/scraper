@@ -1,0 +1,21 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+h1 {
+    color: #007BFF;
+}
+
+button {
+    background-color: #28A745;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.flash {
+    color: #FF0000;  /* Couleur du texte pour les messages flash */
+}

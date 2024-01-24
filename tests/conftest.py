@@ -6,8 +6,11 @@ from app import scrap, quoting
 # testing the mongodb connection
 @pytest.fixture
 def mongo_connection():
-    client = MongoClient()
-    yield client
+    try:
+        client = MongoClient()
+        yield client
+    except Exception:
+        pytest.fail("Could not yield DB client")
 
 
 def test_mongo_db(mongo_connection):

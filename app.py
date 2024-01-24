@@ -1,5 +1,5 @@
 import subprocess
-from flask import Flask, redirect
+from flask import Flask, redirect, render_template
 from pymongo import MongoClient
 from waitress import serve
 
@@ -12,12 +12,12 @@ def scrap():
 
     try:
         subprocess.check_output(["scrapy", "crawl", spider_name])
-        return redirect("/quote", code=302)
+        return redirect("/", code=302)
     except Exception:
         return "Scraping failed"
 
 
-@app.route("/quote")
+@app.route("/")
 def quoting():
     # Connect to MongoDB
     client = MongoClient()
@@ -29,13 +29,11 @@ def quoting():
         quote = [doc for doc in db.quotes.aggregate([{
             "$sample": {"size": 1}}])][0]
         client.close()
-        return f"""<h1>Quote of the Day</h1>
-                <h2>{quote["author"]}</h2>
-                <p>{quote["content"]}</p>"""
+        return render_template("quote.html", 
+                               quote=quote["content"], 
+                               author=quote["author"])
     except Exception:
-        return """<h1>There is no quote to display</h1>
-        <h2>Sadge</h2>
-        <p>use /scrap route to populate our knowledge</p>"""
+        return render_template("quote.html", quote=None)
 
 
 if __name__ == "__main__":

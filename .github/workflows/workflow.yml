@@ -54,7 +54,9 @@ jobs:
 
   publish: 
     runs-on: ubuntu-latest
-
+    permissions:
+      packages: write
+      contents: read
     needs : testing
     if : success()
 
@@ -66,8 +68,15 @@ jobs:
       uses: docker/login-action@v3.0.0
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_PW }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
       
+    - name: Log in to the Container registry
+        uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          
     - name: metadata extraction
       id: meta
       uses: docker/metadata-action@v5.5.0

@@ -23,7 +23,7 @@ def runner(app2):
 
 def test_api(client):
     response = client.get("/")
-    assert response.status_code == (200 or 201)
+    assert response.status_code == 200
 
 
 def test_scrap(client):

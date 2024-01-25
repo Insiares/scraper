@@ -64,7 +64,7 @@ def quoting():
         logging.info(f'''Endpoint:
                      /quoting accessed with empty DB.
                      User-Agent: {user_value}''')
-        return render_template("quote.html", quote=None), 201
+        return render_template("quote.html", quote=None), 200
     except Exception:
         logging.info(f'''Endpoint:
                      /quoting failed

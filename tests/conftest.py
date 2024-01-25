@@ -1,6 +1,7 @@
 import pytest
 from pymongo import MongoClient
-from app import scrap, quoting, init_logger
+from app import scrap, quoting
+from module.logger import init_logger
 
 
 # testing the mongodb connection

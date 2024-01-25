@@ -3,7 +3,7 @@ from flask import Flask, redirect, render_template, request
 from pymongo import MongoClient
 from waitress import serve
 import logging
-from logger import init_logger
+from module.logger import init_logger
 # from flask_mail import Mail, Message
 
 app = Flask(__name__)

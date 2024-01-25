@@ -40,17 +40,9 @@ jobs:
     - name: Change to the repository root
       run: cd $GITHUB_WORKSPACE
 
-    # - name: Start Flask server in background
-    #   run: |
-    #     python app.py &  
-    #     sleep 10  # Wait for the server to start (adjust as needed)
-
     - name: Run tests
       run: |
         pytest ./tests/conftest.py
-
-    - name: Stop Flask server
-      run: pkill -f 'python app.py'
 
     - name: Run linter (exemple avec flake8)
       run: |

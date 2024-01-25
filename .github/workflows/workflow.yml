@@ -29,8 +29,8 @@ jobs:
       run: echo "PYTHONPATH=$GITHUB_WORKSPACE" >> $GITHUB_ENV
 
     - name: testing secrets
-      run: echo ${{ secrets.DOCKER_USERNAME }}
-      
+      run: echo "${{ secrets.DOCKER_USERNAME }}"
+
     - name: Print sys.path
       run: python -c "import sys; print(sys.path)"
 

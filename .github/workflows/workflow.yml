@@ -27,23 +27,23 @@ jobs:
     - name: Install mongodb
       uses: supercharge/mongodb-github-action@1.6.0
 
-    # - name: run mongodb
-    #   run: |
-    #     sudo service mongodb start
-
     - name: Create logs folder
       run: mkdir -p $GITHUB_WORKSPACE/logs
 
     - name: Change to the repository root
       run: cd $GITHUB_WORKSPACE
 
-    # - name: run flask api
-    #   run: |
-    #     python ./app.py
+    - name: Start Flask server in background
+      run: |
+        python app.py &  # Adjust this based on your Flask app script
+        sleep 10  # Wait for the server to start (adjust as needed)
 
     - name: Run tests
       run: |
         python -m pytest ./tests/conftest.py
+
+    - name: Stop Flask server
+      run: pkill -f 'python app.py'
 
     - name: Run linter (exemple avec flake8)
       run: |

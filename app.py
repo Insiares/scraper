@@ -7,6 +7,10 @@ import logging
 
 app = Flask(__name__)
 
+# declaring a placeholder user agent 
+# for running test without http requests
+user_value = 'Testing environment'
+
 
 # Logging init
 def init_logger():
@@ -44,14 +48,14 @@ def scrap():
         subprocess.check_output(["scrapy", "crawl", spider_name])
         logging.info(f'''Endpoint:
                      /scrap accessed.
-                     User-Agent: {request.headers.get('User-Agent')}''')
+                     User-Agent: {user_value}''')
         return redirect("/", code=302)
 
     except Exception:
         logging.info(f'''Endpoint:
                      /scrap accessed.
                      Scrapping Failed
-                     User-Agent: {request.headers.get('User-Agent')}''')
+                     User-Agent: {user_value}''')
         return "Scraping failed"
 
 
@@ -69,7 +73,7 @@ def quoting():
         client.close()
         logging.info(f'''Endpoint:
                      /quoting accessed.
-                     User-Agent: {request.headers.get('User-Agent')}''')
+                     User-Agent: {user_value}''')
         return render_template("quote.html",
                                quote=quote_sample["content"],
                                author=quote_sample["author"])
@@ -78,9 +82,10 @@ def quoting():
     except Exception:
         logging.info(f'''Endpoint:
                      /quoting accessed with empty DB.
-                     User-Agent: {request.headers.get('User-Agent')}''')
+                     User-Agent: {user_value}''')
         return render_template("quote.html", quote=None)
 
 
 if __name__ == "__main__":
     serve(app, host="0.0.0.0", port=5000)
+    user_value = request.headers.get('User-Agent')

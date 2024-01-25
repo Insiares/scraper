@@ -1,7 +1,34 @@
 import pytest
 from pymongo import MongoClient
-from app import scrap, quoting
-from module.logger import init_logger
+from app import app
+
+
+@pytest.fixture()
+def app2():
+    app.config.update({
+        "TESTING": True,
+    })
+    yield app
+
+
+@pytest.fixture()
+def client(app2):
+    return app2.test_client()
+
+
+@pytest.fixture()
+def runner(app2):
+    return app2.test_cli_runner()
+
+
+def test_api(client):
+    response = client.get("/")
+    assert response.status_code == (200 or 201)
+
+
+def test_scrap(client):
+    response = client.get("/scrap")
+    assert response.status_code == 302
 
 
 # testing the mongodb connection
@@ -19,25 +46,3 @@ def test_mongo_db(mongo_connection):
         mongo_connection.quote_db
     except Exception:
         pytest.fail("Could not connect to MongoDB")
-
-
-@pytest.fixture()
-def run_logger():
-    logger, file_handler = init_logger()
-    return logger, file_handler
-
-
-# Test scrap function
-def test_scrap(run_logger):
-    try:
-        scrap()
-    except Exception:
-        pytest.fail("Scraping failed")
-
-
-# test quote function
-def test_quote(run_logger):
-    try:
-        quoting()
-    except Exception:
-        pytest.fail("Quoting failed")

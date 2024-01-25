@@ -1,6 +1,5 @@
 import subprocess
-from flask import Flask, redirect, render_template
-# from flask import request
+from flask import Flask, redirect, render_template, request
 from pymongo import MongoClient
 from waitress import serve
 import logging
@@ -12,13 +11,12 @@ app = Flask(__name__)
 
 # Logging in
 logger, file_handler = init_logger()
-user_value = "Test env"
 
 
 @app.route("/scrap")
 def scrap():
     spider_name = "quotes"
-    # user_value = request.headers.get('User-Agent')
+    user_value = request.headers.get('User-Agent')
     try:
         client = MongoClient()
         db = client.quote_db
@@ -40,12 +38,12 @@ def scrap():
                      /scrap accessed.
                      Scrapping Failed
                      User-Agent: {user_value}''')
-        return "Scraping failed"
+        return "Scraping failed", 400
 
 
 @app.route("/")
 def quoting():
-    # user_value = request.headers.get('User-Agent')
+    user_value = request.headers.get('User-Agent')
     # Connect to MongoDB
     client = MongoClient()
     # Access the database
@@ -61,14 +59,17 @@ def quoting():
                      User-Agent: {user_value}''')
         return render_template("quote.html",
                                quote=quote_sample["content"],
-                               author=quote_sample["author"])
-    except RuntimeError:
-        return "Error"
-    except Exception:
+                               author=quote_sample["author"]), 200
+    except IndexError:
         logging.info(f'''Endpoint:
                      /quoting accessed with empty DB.
                      User-Agent: {user_value}''')
-        return render_template("quote.html", quote=None)
+        return render_template("quote.html", quote=None), 201
+    except Exception:
+        logging.info(f'''Endpoint:
+                     /quoting failed
+                     User-Agent: {user_value}''')
+        return "Quoting failed", 400
 
 
 if __name__ == "__main__":

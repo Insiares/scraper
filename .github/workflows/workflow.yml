@@ -40,10 +40,10 @@ jobs:
     - name: Change to the repository root
       run: cd $GITHUB_WORKSPACE
 
-    - name: Start Flask server in background
-      run: |
-        python app.py &  
-        sleep 10  # Wait for the server to start (adjust as needed)
+    # - name: Start Flask server in background
+    #   run: |
+    #     python app.py &  
+    #     sleep 10  # Wait for the server to start (adjust as needed)
 
     - name: Run tests
       run: |

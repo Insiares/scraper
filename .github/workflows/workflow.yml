@@ -31,8 +31,8 @@ jobs:
     #   run: |
     #     sudo service mongodb start
 
-    - name: Copy logs folder
-      run: cp -r logs $GITHUB_WORKSPACE/logs
+    # - name: Copy logs folder
+    #   run: cp -r logs $GITHUB_WORKSPACE/logs
 
     - name: Change to the repository root
       run: cd $GITHUB_WORKSPACE

@@ -1,6 +1,7 @@
 import pytest
 from pymongo import MongoClient
 from app import scrap, quoting
+from logger import init_logger
 
 
 # testing the mongodb connection
@@ -20,8 +21,14 @@ def test_mongo_db(mongo_connection):
         pytest.fail("Could not connect to MongoDB")
 
 
+@pytest.fixture()
+def run_logger():
+    logger, file_handler = init_logger()
+    return logger, file_handler
+
+
 # Test scrap function
-def test_scrap():
+def test_scrap(run_logger):
     try:
         scrap()
     except Exception:
@@ -29,7 +36,7 @@ def test_scrap():
 
 
 # test quote function
-def test_quote():
+def test_quote(run_logger):
     try:
         quoting()
     except Exception:

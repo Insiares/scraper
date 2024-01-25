@@ -3,20 +3,13 @@ from flask import Flask, redirect, render_template, request
 from pymongo import MongoClient
 from waitress import serve
 import logging
+from logger import init_logger
 # from flask_mail import Mail, Message
 
 app = Flask(__name__)
 
 # Logging init
-format_string = '%(asctime)s - %(levelname)s - %(message)s'
-logger = logging.basicConfig(level=logging.INFO,
-                             format=format_string,
-                             datefmt='[%d/%b/%Y %H:%M:%S]')
-file_handler = logging.FileHandler('./logs/app.log')
-file_handler.setLevel(logging.INFO)
-formatter = logging.Formatter(format_string, datefmt='[%d/%b/%Y %H:%M:%S]')
-file_handler.setFormatter(formatter)
-logging.getLogger(logger).addHandler(file_handler)
+logger, file_handler = init_logger()
 
 
 @app.route("/scrap")

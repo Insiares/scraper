@@ -1,6 +1,9 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
+    background-color: #333;
+    color: #fff;
+    font-size: larger;
 }
 
 h1 {
@@ -14,8 +17,11 @@ button {
     font-size: 16px;
     border: none;
     cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.flash {
-    color: #FF0000;  /* Couleur du texte pour les messages flash */
+button:hover {
+    background-color: #218838;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }

@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <title>Random Quote</title>
+    <title>Random Quote from {{ author }}</title>
 </head>
 <body>
     <h1>Random Quote</h1>
     {% if quote %}
         <p>{{ quote }}</p>
         <p>- {{ author }}</p>
+        <!-- add a button to refresh the page-->
+        <button onclick="location.reload();">Refresh Page</button>
     {% else %}
         <p>No quote available</p>
         <a href="{{ url_for('scrap') }}"><button>Get Quote</button></a>

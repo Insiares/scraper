@@ -1,5 +1,6 @@
 import subprocess
-from flask import Flask, redirect, render_template, request
+from flask import Flask, redirect, render_template
+# from flask import request
 from pymongo import MongoClient
 from waitress import serve
 import logging
@@ -8,19 +9,16 @@ from module.logger import init_logger
 
 app = Flask(__name__)
 
-# declaring a placeholder user agent
-# for running test without http requests
-user_value = 'Testing environment'
 
-
-# Logging init
+# Logging in
 logger, file_handler = init_logger()
+user_value = "Test env"
 
 
 @app.route("/scrap")
 def scrap():
     spider_name = "quotes"
-
+    # user_value = request.headers.get('User-Agent')
     try:
         client = MongoClient()
         db = client.quote_db
@@ -47,6 +45,7 @@ def scrap():
 
 @app.route("/")
 def quoting():
+    # user_value = request.headers.get('User-Agent')
     # Connect to MongoDB
     client = MongoClient()
     # Access the database
@@ -74,4 +73,3 @@ def quoting():
 
 if __name__ == "__main__":
     serve(app, host="0.0.0.0", port=5000)
-    user_value = request.headers.get('User-Agent')

@@ -47,7 +47,7 @@ jobs:
 
     - name: Run tests
       run: |
-        python -m pytest ./tests/unit_tests.py
+        pytest ./tests/unit_tests.py
 
     - name: Stop Flask server
       run: pkill -f 'python app.py'

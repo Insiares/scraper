@@ -29,6 +29,10 @@ it works
 this works in CLI: 
 acorn update --auto-upgrade damp-thunder index.docker.io/insiares/scaper:main
 Will it work automatically if I push a new image? 
+if i push the image in the cli it works
+but the image pushed inside the GH workflows seems to cause a crashloop
+
+
 
 # New acorn logics with mongodb as a service and a lighter docker env
 acorn push index.docker.io/insiares/scraper_corn:main    

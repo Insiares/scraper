@@ -35,8 +35,8 @@ jobs:
     - name: Install mongodb
       uses: supercharge/mongodb-github-action@1.10.0
 
-    - name: Create logs folder
-      run: mkdir -p $GITHUB_WORKSPACE/logs
+    # - name: Create logs folder
+    #   run: mkdir -p $GITHUB_WORKSPACE/logs
 
     - name: Change to the repository root
       run: cd $GITHUB_WORKSPACE

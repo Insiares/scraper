@@ -16,3 +16,7 @@ acorn run index.docker.io/blable/image:version .
 
 acorn build -t index.docker.io/insiares/scaper:main .
 acorn push index.docker.io/insiares/scraper:main
+
+
+### running the acorn from dockerhub and ask for update notification
+acorn run -n scraper --notify-upgrade index.docker.io/insiares/scaper:main

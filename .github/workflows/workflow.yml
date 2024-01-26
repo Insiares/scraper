@@ -76,7 +76,8 @@ jobs:
       run: |
         acorn build -t index.docker.io/${{ secrets.DOCKERHUB_USERNAME }}/scaper:main .
         acorn push index.docker.io/${{ secrets.DOCKERHUB_USERNAME }}/scaper:main
-
+        acorn update --image . scraper
+        
     - name: Dockerhub login
       uses: docker/login-action@v3.0.0
       with:

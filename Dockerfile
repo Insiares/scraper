@@ -18,5 +18,6 @@ RUN chmod +x init.sh
 
 EXPOSE 5000
 
+# running an init file to run mongo deamon and the app at the same time
 CMD ["./init.sh"]
 

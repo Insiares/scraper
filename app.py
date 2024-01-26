@@ -51,6 +51,7 @@ def quoting():
 
     # Get a random quote at each request
     try:
+        # List comprehension that calls a random sample from mongodb
         quote_sample = [doc for doc in db.quotes.aggregate([{
             "$sample": {"size": 1}}])][0]
         client.close()

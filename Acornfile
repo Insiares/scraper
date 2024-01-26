@@ -1,3 +1,9 @@
+acorns: scrap: {
+    image: "index.docker.io/insiares/scaper:main"
+    autoUpgrade: true
+
+}
+
 containers: app: {
         build: context: "."
         ports: publish: "5000/http"

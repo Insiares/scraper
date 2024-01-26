@@ -7,7 +7,7 @@
 [x] implement logging
 [x] Write dockerfile
 [x] deploy on acorn
-[] CI with acorn/dockerhub : add credential to GH actions and acorn logic to build and push to dockerio
-[] attempt to CD with acorn autoupdate
+[x] CI with acorn/dockerhub : add credential to GH actions and acorn logic to build and push to dockerio
+[x] attempt to CD with acorn autoupdate
 [] security test
 [] documentation
